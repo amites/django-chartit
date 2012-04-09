@@ -185,7 +185,7 @@ class Chart(object):
                     title += dss[x_term]['field_alias'].title()
                 title += ' & '
         if not self.hcoptions['title']['text']:
-            self.hcoptions['title']['text'] = title[:-3]
+            self.hcoptions['title']['text'] = None#title[:-3]
         # if xAxis and yAxis are supplied as a dict, embed it in a list
         # (needed for multiple axes) 
         xAxis, yAxis = self.hcoptions['xAxis'], self.hcoptions['yAxis']
@@ -212,7 +212,7 @@ class Chart(object):
         for i, x_axis in enumerate(self.hcoptions['xAxis']):
             if not x_axis['title']['text']:
                 axis_title = set(t[0] for t in term_x_axis if t[1] == i)
-                x_axis['title']['text'] = ' & '.join(axis_title)
+                x_axis['title']['text'] = None#' & '.join(axis_title)
         if max_x_axis == 1:
             if self.hcoptions['xAxis'][1]['opposite'] != False:
                 self.hcoptions['xAxis'][1]['opposite'] = True
@@ -223,7 +223,7 @@ class Chart(object):
         for i, y_axis in enumerate(self.hcoptions['yAxis']):
             if not y_axis['title']['text']:
                 axis_title = set(t[0] for t in term_y_axis if t[1] == i)
-                y_axis['title']['text'] = ' & '.join(axis_title)
+                y_axis['title']['text'] = None#' & '.join(axis_title)
         if max_y_axis == 1:
             if self.hcoptions['yAxis'][1]['opposite'] != False:
                 self.hcoptions['yAxis'][1]['opposite'] = True
@@ -279,7 +279,6 @@ class Chart(object):
                         opts['name'] = alias
                         opts['type'] = typ
                         opts['data'] = []
-                    
                     if ptype == 'scatter' or (ptype == 'line' and 
                                               len(x_y_terms_tuples) == 1):
                         if x_mts:

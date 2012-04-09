@@ -55,8 +55,9 @@ def load_charts(chart_list=None, render_to=''):
       
     embed_script = (
       '<script type="text/javascript">\n'
-      'var _chartit_hco_array = %s;\n</script>\n'
-      '<script src="%s" type="text/javascript">\n</script>')
+      '_chartit_hco_array.push(%s);\n</script>\n'
+      #'<script src="%s" type="text/javascript">\n</script>'
+      )
     
     if chart_list is not None:
         if isinstance(chart_list, (Chart, PivotChart)):
@@ -66,9 +67,8 @@ def load_charts(chart_list=None, render_to=''):
         for hco, render_to in izip_longest(chart_list, render_to_list):
             if render_to:
                 hco['chart']['renderTo'] = render_to
-        embed_script = (embed_script % (simplejson.dumps(chart_list, 
-                                                         use_decimal=True),
-                                        CHART_LOADER_URL))
+        embed_script = (embed_script % (simplejson.dumps(chart_list[0], 
+                                                         use_decimal=True)))
     else:
-        embed_script = embed_script %((), CHART_LOADER_URL)
+        embed_script = embed_script %(())
     return mark_safe(embed_script)
