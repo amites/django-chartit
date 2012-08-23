@@ -8,7 +8,7 @@ window.addEvent('domready', function() {
                         return this.y > 0 ? this.point.name : null;
         };
         for(var k=0; k< chartoptions.series.length; k++){
-            chartoptions.series.dataLabels=  {formatter: fmtr};
+            chartoptions.yAxis.stackLabels = {formatter: fmtr};
         }
 		// console.log(chartoptions);
 		var chart = new Highcharts.Chart(chartoptions);
