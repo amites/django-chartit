@@ -5,10 +5,10 @@
 window.addEvent('domready', function() {
 	_chartit_hco_array.each(function(chartoptions, index) {
         var fmtr = function() {
-                        return this.y > 0 ? this.point.name : null;
+                        return (this.value).format({precision: 1,scientific: false});
         };
         for(var k=0; k< chartoptions.series.length; k++){
-            chartoptions.yAxis.stackLabels = {formatter: fmtr};
+            chartoptions.yAxis[0].labels = {formatter: fmtr};
         }
 		// console.log(chartoptions);
 		var chart = new Highcharts.Chart(chartoptions);
